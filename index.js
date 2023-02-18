@@ -2,7 +2,7 @@ const keep = require('./keep')
 const fs = require('fs')
 const Discord = require('discord.js');
 const client = new Discord.Client({intents: 32767});
-const config = require('./setting.json');
+const config = require('./Utility/setting.json');
 const PREFIX = config.PREFIX
 
 client.commands = new Discord.Collection();

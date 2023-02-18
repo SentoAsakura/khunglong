@@ -93,7 +93,7 @@ const video_player = async (guild, song) => {
         highWaterMark: 1 << 62,
         liveBuffer: 1 << 62,
         dlChunkSize: 0, //disabling chunking is recommended in discord bot
-        bitrate: 128,
+        bitrate: 256,
         quality: "lowestaudio",
     });
     song_queue.connection.subscribe(player)
