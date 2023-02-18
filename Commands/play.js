@@ -1,4 +1,4 @@
-const ytdl = require('ytdl-core')
+const ytdl = require('ytdl-core-discord')
 const ytSearch = require('yt-search')
 const { joinVoiceChannel, createAudioPlayer, createAudioResource, AudioPlayerStatus, VoiceConnectionStatus, NoSubscriberBehavior, StreamType } = require('@discordjs/voice')
 const player = createAudioPlayer()
@@ -92,7 +92,7 @@ const video_player = async (guild, song) => {
         fmt: "mp3",
         highWaterMark: 1 << 62,
         liveBuffer: 1 << 62,
-        dlChunkSize: 0, //disabling chunking is recommended in discord bot
+    //    dlChunkSize: 0, //disabling chunking is recommended in discord bot
         bitrate: 128,
         quality: "lowestaudio",
     });

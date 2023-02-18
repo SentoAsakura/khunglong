@@ -1,3 +1,4 @@
+const keep = require('./keep')
 const fs = require('fs')
 const Discord = require('discord.js');
 const client = new Discord.Client({intents: 32767});
@@ -21,6 +22,7 @@ client.on("messageCreate", message =>{
 })
 client.on('ready', ()=>{
     console.log('Get ready for boost and Magnum \n  Ready \n        Fight')
+    keep()
 })
   
 
