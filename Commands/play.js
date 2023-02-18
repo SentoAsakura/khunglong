@@ -87,12 +87,12 @@ const video_player = async (guild, song) => {
         return;
     }
 
-    const stream = ytdl(song.url, {
+    const stream = await ytdl(song.url, {
         filter: "audioonly",
         fmt: "mp3",
         highWaterMark: 1 << 62,
         liveBuffer: 1 << 62,
-    //    dlChunkSize: 0, //disabling chunking is recommended in discord bot
+        dlChunkSize: 0, //disabling chunking is recommended in discord bot
         bitrate: 128,
         quality: "lowestaudio",
     });
