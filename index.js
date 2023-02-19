@@ -21,7 +21,7 @@ client.on("messageCreate", message =>{
     if(command) command.execute(message, args, cmd)
 })
 client.on('ready', ()=>{
-    console.log('Get ready for boost and Magnum \n  Ready \n        Fight')
+    console.log('Contigerncy code: 000 \n Activate')
     keep()
 })
   
