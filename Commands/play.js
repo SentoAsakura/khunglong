@@ -60,7 +60,8 @@ module.exports = {
                     })
                     await video_player(message.guild, queue_constructor.songs.shift())
                     player.on(AudioPlayerStatus.Idle, () => {
-                        video_player(message.guild, queue_constructor.songs.shift());
+                        queue_constructor.connection.destroy();
+                        queue.delete(message.guild.id)
                     });
                 } catch (err) {
                     queue.delete(message.guild.id)
