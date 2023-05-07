@@ -19,7 +19,7 @@ module.exports = {
         const server_queue = queue.get(message.guild.id);
 
         if (cmd === 'play') {
-            if (!args.length) return message.channel.send('**CHÚ MÀY THÊM CÁI LINK HOẶC TỪ KHÓA HỘ CÁI**')
+            if (!args.length) return message.channel.send('**Thêm từ khóa hoặc link vào**')
             let song = {};
 
             if (ytdl.validateURL(args[0])) {
@@ -89,13 +89,13 @@ const video_player = async (guild, song) => {
     }
 
     const stream = await ytdl(song.url, {
-        filter: "audioonly",
+        filter: "audio",
         fmt: "mp3",
         highWaterMark: 1 << 62,
         liveBuffer: 1 << 62,
         dlChunkSize: 0, //disabling chunking is recommended in discord bot
         bitrate: 256,
-        quality: "lowestaudio",
+        quality: "highestaudio",
     });
     song_queue.connection.subscribe(player)
     song_queue.connection.on(VoiceConnectionStatus.Destroyed, () => {
@@ -111,7 +111,7 @@ const video_player = async (guild, song) => {
 
 const skipSong = async (message, server_queue) => {
     if (!message.member.voice.channel) return message.channel.send('Chú cần vào 1 channel để dùng lệnh này')
-    if (!server_queue) return message.channel.send('Hàng chờ như số nyc của Dilo ấy <:lmao:951394931535130694>')
+    if (!server_queue) return message.channel.send('Nó trống')
     player.stop()
     await video_player(message.guild, server_queue.songs.shift())
 }
