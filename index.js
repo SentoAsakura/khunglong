@@ -25,5 +25,9 @@ client.on('ready', ()=>{
     keep()
 })
   
+const { generateDependencyReport } = require('@discordjs/voice');
+
+console.log(generateDependencyReport());
+
 
 client.login(config.TOKEN)
