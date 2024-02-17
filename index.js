@@ -14,11 +14,11 @@ for(const file of commandFiles) {
 }
 
 client.distube = new DisTube(client, {
-  leaveOnStop: false,
+  leaveOnStop: true,
   emitNewSongOnly: true,
   emptyCooldown: 300,
   emitAddSongWhenCreatingQueue: false,
-  emitAddListWhenCreatingQueue: false
+  //emitAddListWhenCreatingQueue: false
 })
 
 client.on("messageCreate", message =>{
@@ -32,6 +32,7 @@ client.on("messageCreate", message =>{
     if (!command) return;
     if(command) command.execute(client,message, args, cmd)
 })
+
 client.on('ready', ()=>{
   console.log('With this treasure, I summon \n Eight-Handled Sword Divergent Sila Divine General Mahoraga')
 })
@@ -39,6 +40,20 @@ client.on('ready', ()=>{
 const { generateDependencyReport } = require('@discordjs/voice');
 
 console.log(generateDependencyReport());
+
+client.distube
+  .on('playSong', (queue, song) => {
+    queue.textChannel.send(`Đang thích nghi với \`${song.name}\``)
+  })
+  .on('addSong', (queue, song) => {
+    queue.textChannel.send(`Đã thêm \`${song.name}\` vào Vòng Bát Tránh`)
+  })
+  .on('addList', (queue, playlist) => {
+    queue.textChannel.send(`Đã thêm \`${playlist.songs.length}\` thuật thức từ \`${playlist.name}\` vào Vòng Bát Tránh`)
+  })
+  .on('disconnect', (queue) => {
+    queue.textChannel.send('Đã hoàn thành thích nghi')
+  })
 
 
 client.login(config.TOKEN)

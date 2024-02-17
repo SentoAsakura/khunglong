@@ -4,7 +4,7 @@ const player = createAudioPlayer()
 module.exports = {
     name: 'play',
     aliases: ['p'],
-    async execute(client,message,args,cmd){
+    execute(client,message,args,cmd){
         const voice_channel = message.member.voice.channel;
         if (!voice_channel) return message.channel.send('Chú cần vào 1 channel để dùng lệnh này')
         const permissions = voice_channel.permissionsFor(message.client.user)
@@ -25,14 +25,18 @@ module.exports = {
             });
         });
 
-        await client.distube.voices.join(voice_channel)
+        client.distube.voices.join(voice_channel)
         let x = args.join(' ')
         if(!x){
             message.channel.send('K.Y.S')
         }
         
         try{
-            client.distube.play(voice_channel, x)
+            client.distube.play(voice_channel, x,{
+                member: message.member,
+                textChannel: message.channel,
+                message
+            })
         } catch(err){
             console.log(err)
         }
