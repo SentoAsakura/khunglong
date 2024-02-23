@@ -18,6 +18,7 @@ client.distube = new DisTube(client, {
   emitNewSongOnly: true,
   emptyCooldown: 300,
   emitAddSongWhenCreatingQueue: false,
+  leaveOnEmpty: true,
   //emitAddListWhenCreatingQueue: false
 })
 
@@ -46,13 +47,20 @@ client.distube
     queue.textChannel.send(`Đang thích nghi với \`${song.name}\``)
   })
   .on('addSong', (queue, song) => {
-    queue.textChannel.send(`Đã thêm \`${song.name}\` vào Vòng Bát Tránh`)
+    queue.textChannel.send(`Đã thêm \`${song.name}\` vào Vòng Bát Chánh`)
   })
   .on('addList', (queue, playlist) => {
-    queue.textChannel.send(`Đã thêm \`${playlist.songs.length}\` thuật thức từ \`${playlist.name}\` vào Vòng Bát Tránh`)
+    queue.textChannel.send(`Đã thêm \`${playlist.songs.length}\` thuật thức từ \`${playlist.name}\` vào Vòng Bát Chánh`)
   })
   .on('disconnect', (queue) => {
     queue.textChannel.send('Đã hoàn thành thích nghi')
+  })
+  .on('finish', (queue) => {
+    queue.textChannel.send('Đã thích nghi với mọi thuật thức hiện có')
+  })
+  .on('error', (channel, error) => {
+    channel.send('Đã xảy ra lỗi trong quá trình thích nghi')
+    console.log(error)
   })
 
 
