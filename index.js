@@ -5,6 +5,7 @@ const config = require('./Utility/setting.json');
 const PREFIX = config.PREFIX
 const { DisTube } = require('distube')
 const { YtDlpPlugin } = require('@distube/yt-dlp')
+const { SpotifyPlugin } = require('@distube/spotify')
 
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./Commands').filter(file => file.endsWith('.js'));
@@ -20,6 +21,9 @@ client.distube = new DisTube(client, {
   emitAddSongWhenCreatingQueue: false,
   leaveOnEmpty: true,
   //emitAddListWhenCreatingQueue: false
+  plugins: [
+    new SpotifyPlugin(),
+  ]
 })
 
 client.on("messageCreate", message =>{
