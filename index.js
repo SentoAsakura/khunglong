@@ -59,8 +59,8 @@ client.distube
     queue.textChannel.send('Đã thích nghi với mọi thuật thức hiện có')
   })
   .on('error', (channel, error) => {
-    channel.send('Đã xảy ra lỗi trong quá trình thích nghi')
     console.log(error)
+    return channel.send('Đã xảy ra lỗi trong quá trình thích nghi')
   })
 
 
