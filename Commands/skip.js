@@ -3,7 +3,7 @@ module.exports = {
     aliases: ['s'],
     execute(client, message, args, cmd){
         let queue = client.distube.getQueue(message.guild.id)
-        if(queue.songs.length > 1){
+        if(queue.songs.length > 2){
             client.distube.skip(message)
         }else{
             client.distube.stop(message)
